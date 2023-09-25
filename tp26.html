@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mover Div con el Mouse</title>
+    <style>
+        #miDiv {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- El div inicialmente en una coordenada absoluta -->
+    <div id="miDiv" style="top: 100px; left: 100px;"></div>
+
+    <script>
+        const miDiv = document.getElementById('miDiv');
+        let isDragging = false;
+
+        // Función para mover el div a la posición del mouse
+        function moverDiv(event) {
+            if (isDragging) {
+                const mouseX = event.clientX;
+                const mouseY = event.clientY;
+
+                miDiv.style.left = mouseX + 'px';
+                miDiv.style.top = mouseY + 'px';
+            }
+        }
+
+        // Evento para iniciar el arrastre cuando se hace clic
+        window.addEventListener('mousedown', (event) => {
+            isDragging = true;
+            moverDiv(event);
+        });
+
+        // Evento para detener el arrastre cuando se suelta el clic
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Evento para mover el div mientras se mueve el mouse
+        window.addEventListener('mousemove', moverDiv);
+    </script>
+</body>
+</html>
